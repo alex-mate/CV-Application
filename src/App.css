@@ -182,3 +182,8 @@
     border-right-color: var(--border);
   }
 }
+.cv-builder {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 2rem;
+}

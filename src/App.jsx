@@ -3,6 +3,7 @@ import './App.css';
 import GeneralInfo from './components/GeneralInfo';
 import Education from './components/Education';
 import Experience from './components/Experience';
+import CVPreview from './components/CVPreview';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <pre>{JSON.stringify(education, null, 2)}</pre>
       <Experience experience={experience} setExperience={setExperience} />
       <pre>{JSON.stringify(experience, null, 2)}</pre>
+      <CVPreview generalInfo={generalInfo} education={education} experience={experience} />
     </main>
   );
 }
