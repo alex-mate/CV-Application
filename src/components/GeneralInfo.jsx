@@ -1,66 +1,43 @@
 import { useState } from 'react';
 
-
 export default function GeneralInfo({ generalInfo, handleChange }) {
-    const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(true);
 
-    function handleEdit() {
-      
-        setIsEditing(!isEditing);
-    }
+  function handleSubmit(event) {
+    event.preventDefault();
+    setIsEditing(false);
+  }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        setIsEditing(false);
-    }
   return (
-    <>
-        <h2>General Information</h2>
-        {isEditing ? (
-  <form onSubmit={handleSubmit}>
-    <label htmlFor="name">Name:</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      value={generalInfo.name}
-      onChange={handleChange}
-    />
-
-    <label htmlFor="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      value={generalInfo.email}
-      onChange={handleChange}
-    />
-
-    <label htmlFor="phone">Phone:</label>
-    <input
-      type="tel"
-      id="phone"
-      name="phone"
-      value={generalInfo.phone}
-      onChange={handleChange}
-    />
-    <button type="submit">Submit</button>
-  </form>
-) : (
-  <div>
-    <p>Name: {generalInfo.name}</p>
-    <p>Email: {generalInfo.email}</p>
-    <p>Phone: {generalInfo.phone}</p>
-
-    <button onClick={() => setIsEditing(true)}>
-      Edit
-    </button>
-  </div>
-)}
-  
-    </>
-     
-      
-    
+    <section className="general-info" aria-labelledby="general-info-heading">
+      <h2 id="general-info-heading">General Information</h2>
+      {isEditing ? (
+        <form className="general-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="general-name">Name</label>
+            <input id="general-name" type="text" name="name"
+              value={generalInfo.name} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="general-email">Email</label>
+            <input id="general-email" type="email" name="email"
+              value={generalInfo.email} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="general-phone">Phone</label>
+            <input id="general-phone" type="tel" name="phone"
+              value={generalInfo.phone} onChange={handleChange} />
+          </div>
+          <button type="submit" className="primary-button">Submit</button>
+        </form>
+      ) : (
+        <div className="general-details">
+          <p><strong>Name:</strong> {generalInfo.name || '—'}</p>
+          <p><strong>Email:</strong> {generalInfo.email || '—'}</p>
+          <p><strong>Phone:</strong> {generalInfo.phone || '—'}</p>
+          <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
+        </div>
+      )}
+    </section>
   );
 }
